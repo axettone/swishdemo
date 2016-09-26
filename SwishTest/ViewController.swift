@@ -28,17 +28,16 @@ class ViewController: UIViewController, NSURLSessionDelegate, NSURLConnectionDel
         self.data = NSMutableData()
         let url = NSURL(string: "http://192.168.1.9:3050/pengine/create")
         self.request = NSMutableURLRequest.init(URL: url!)
-        //let body:NSString = "format=json&template=prolog(A)&ask=actor(_,A,_),director(_,A)&solutions=all&src_text=:-include('movies.pl').&application=swish&chunk=10"
         
         let body:NSString = "format=json&template=prolog(Program)&ask=induce(Program)&src_text=:-include('train.pl').&application=swish&chunk=100000000000"
-        //request.HTTPBody = body.dataUsingEncoding(NSASCIIStringEncoding)
-        self.request!.HTTPBody = body.dataUsingEncoding(NSUTF8StringEncoding)
+         self.request!.HTTPBody = body.dataUsingEncoding(NSUTF8StringEncoding)
         
         print(self.request!.HTTPBody?.length)
         self.request!.HTTPMethod = "POST"
         request!.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request!.setValue("curl/7.43.0", forHTTPHeaderField: "User-Agent")
-        //request!.setValue("application/json", forHTTPHeaderField: "Accept")
+
+        
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()
         var session = NSURLSession(configuration: config, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
         var task = session.dataTaskWithRequest(request!)
@@ -59,13 +58,13 @@ class ViewController: UIViewController, NSURLSessionDelegate, NSURLConnectionDel
     func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
         if((error) != nil){
             print("Hola, errori!")
+            return
         }
         print("FINITO")
         let results:NSString = NSString(data: self.data!, encoding: NSUTF8StringEncoding)!
         let splitter:NSString = "Access-Control-Allow-Origin: *\nCache-Control: no-cache, no-store, must-revalidate\r\nPragma: no-cache\r\nExpires: 0\r\nContent-type: application/json; charset=UTF-8"
-        //let splitter:NSString = "Access-Control-Allow-Origin: *\n"
-        //let items = results.componentsSeparatedByString(splitter as String)
-        
+      
+        //TODO: Fare pulizia, il primo array data dovrebbe essere inutile
         let tmp:NSString = results.stringByReplacingOccurrencesOfString(splitter as String, withString: ",")
         let jsonString = NSString.init(format: "{\"data\":[%@]}", tmp)
         do{
@@ -75,6 +74,8 @@ class ViewController: UIViewController, NSURLSessionDelegate, NSURLConnectionDel
             print(items.count)
             let d:NSDictionary = items[0] as! NSDictionary
             self.pengine_id = NSString(string: d["id"] as! String)
+            
+            self.pullResponse()
             
         } catch {
             print("Errore")
