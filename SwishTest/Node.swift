@@ -2,8 +2,8 @@
 //  Node.swift
 //  SwishTest
 //
-//  Created by Giovanna Cavallaro on 25/09/16.
-//  Copyright © 2016 Giovanna Cavallaro. All rights reserved.
+//  Created by Paolo N. Giubelli on 25/09/16.
+//  Copyright © 2016 Paolo N. Giubelli. All rights reserved.
 //
 
 import Foundation

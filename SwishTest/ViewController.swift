@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  SwishTest
 //
-//  Created by Giovanna Cavallaro on 24/09/16.
-//  Copyright © 2016 Giovanna Cavallaro. All rights reserved.
+//  Created by Paolo N. Giubelli on 24/09/16.
+//  Copyright © 2016 Paolo N. Giubelli. All rights reserved.
 //
 
 import UIKit
