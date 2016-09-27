@@ -62,8 +62,9 @@ class PullHandler : NSObject, NSURLSessionDelegate, NSURLSessionDataDelegate, NS
         
         let root:Node = Node(functor: predicate["functor"] as! NSString)
         root.addChildren(predicate["args"] as! NSArray)
-        
-        print(root.toString())
+        let str:NSString = root.toString()
+        print(str)
+        self.parentController!.updateGUI(str)
         
     }
 }

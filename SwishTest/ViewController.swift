@@ -19,6 +19,7 @@ class ViewController: UIViewController, NSURLSessionDelegate, NSURLConnectionDel
     var pullRequestHandler:PullHandler?
     
     
+    @IBOutlet weak var lblTheory: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,6 +100,10 @@ class ViewController: UIViewController, NSURLSessionDelegate, NSURLConnectionDel
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func updateGUI(theory:NSString){
+        self.lblTheory.text = theory as String
     }
 
 

@@ -17,26 +17,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="420-sc-JQ4">
-                                <rect key="frame" x="282" y="188" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="420-sc-JQ4">
+                                <rect key="frame" x="248" y="250" width="104" height="30"/>
+                                <state key="normal" title="Induce Theory!">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="btnRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IQw-gk-IhT"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vmy-1S-gq5">
-                                <rect key="frame" x="264" y="254" width="82" height="30"/>
-                                <state key="normal" title="PullRequest"/>
-                                <connections>
-                                    <action selector="pullThat:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PdW-Pm-WSM"/>
-                                </connections>
-                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SWILogo" translatesAutoresizingMaskIntoConstraints="NO" id="HjS-xc-lhX">
+                                <rect key="frame" x="250" y="42" width="100" height="100"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SWISH DEMO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9uf-Nv-DS9">
+                                <rect key="frame" x="244" y="166" width="112" height="19"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOd-Fs-jq1">
+                                <rect key="frame" x="300" y="416" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.53322983850000005" green="0.69792808939999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="HjS-xc-lhX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="22" id="9uW-6w-6Z0"/>
+                            <constraint firstItem="420-sc-JQ4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="D39-UJ-ct6"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="nOd-Fs-jq1" secondAttribute="bottom" constant="184" id="HbU-hS-veF"/>
+                            <constraint firstItem="HjS-xc-lhX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MaG-6C-RKO"/>
+                            <constraint firstItem="9uf-Nv-DS9" firstAttribute="top" secondItem="HjS-xc-lhX" secondAttribute="bottom" constant="24" id="VaP-aV-PgW"/>
+                            <constraint firstItem="420-sc-JQ4" firstAttribute="top" secondItem="9uf-Nv-DS9" secondAttribute="bottom" constant="65" id="bAn-WW-8RV"/>
+                            <constraint firstItem="9uf-Nv-DS9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dYt-Ju-n6b"/>
+                            <constraint firstItem="nOd-Fs-jq1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xGE-Im-V0P"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="lblTheory" destination="nOd-Fs-jq1" id="5Zj-oA-W0r"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="288" y="186"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="SWILogo" width="100" height="100"/>
+    </resources>
 </document>
