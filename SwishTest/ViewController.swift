@@ -27,8 +27,9 @@ class ViewController: UIViewController, NSURLSessionDelegate, NSURLConnectionDel
     }
     @IBAction func btnRequest(sender: AnyObject) {
         self.data = NSMutableData()
-        let url = NSURL(string: "http://192.168.1.9:3050/pengine/create")
+        let url = NSURL(string: "http://172.31.255.146:3050/pengine/create")
         self.request = NSMutableURLRequest.init(URL: url!)
+        
         
         let body:NSString = "format=json&template=prolog(Program)&ask=induce(Program)&src_text=:-include('train.pl').&application=swish&chunk=100000000000"
          self.request!.HTTPBody = body.dataUsingEncoding(NSUTF8StringEncoding)
@@ -43,8 +44,14 @@ class ViewController: UIViewController, NSURLSessionDelegate, NSURLConnectionDel
         var session = NSURLSession(configuration: config, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
         var task = session.dataTaskWithRequest(request!)
         
+        do{
+            let filePath:NSString = NSBundle.mainBundle().pathForResource("train", ofType: "pl")!
+            var fileContent:NSString = try NSString(contentsOfFile: filePath as String, encoding: NSUTF8StringEncoding)
         
         task.resume()
+        } catch {
+            print("ERROR")
+        }
         print("RESUME()")
         
     }
@@ -86,7 +93,7 @@ class ViewController: UIViewController, NSURLSessionDelegate, NSURLConnectionDel
     }
     func pullResponse(){
         self.pullRequestHandler = PullHandler(parentController: self)
-        let pullURL = NSString(format: "http://192.168.1.9:3050/pengine/pull_response?id=%@&format=json", self.pengine_id!)
+        let pullURL = NSString(format: "http://172.31.255.146:3050/pengine/pull_response?id=%@&format=json", self.pengine_id!)
         //print(pullURL)
         self.pullRequest = NSMutableURLRequest.init(URL: NSURL(string: pullURL as String)!)
         self.pullRequest!.HTTPMethod = "GET"

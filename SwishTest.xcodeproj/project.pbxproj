@@ -12,6 +12,7 @@
 		9A094D8D1D97130900120BE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A094D8B1D97130900120BE3 /* Main.storyboard */; };
 		9A094D8F1D97130900120BE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A094D8E1D97130900120BE3 /* Assets.xcassets */; };
 		9A094D921D97130900120BE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A094D901D97130900120BE3 /* LaunchScreen.storyboard */; };
+		9A9F73CE1D9A9E0200373883 /* train.pl in Resources */ = {isa = PBXBuildFile; fileRef = 9A9F73CD1D9A9E0100373883 /* train.pl */; };
 		9AA5C9901D97EADA002A12C6 /* PullHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5C98F1D97EADA002A12C6 /* PullHandler.swift */; };
 		9AAF814F1D982EAF004DF04E /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAF814E1D982EAF004DF04E /* Node.swift */; };
 /* End PBXBuildFile section */
@@ -24,6 +25,7 @@
 		9A094D8E1D97130900120BE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A094D911D97130900120BE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A094D931D97130900120BE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A9F73CD1D9A9E0100373883 /* train.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = train.pl; sourceTree = "<group>"; };
 		9AA5C98F1D97EADA002A12C6 /* PullHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullHandler.swift; sourceTree = "<group>"; };
 		9AAF814E1D982EAF004DF04E /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,6 +68,7 @@
 				9A094D8E1D97130900120BE3 /* Assets.xcassets */,
 				9A094D901D97130900120BE3 /* LaunchScreen.storyboard */,
 				9A094D931D97130900120BE3 /* Info.plist */,
+				9A9F73CD1D9A9E0100373883 /* train.pl */,
 			);
 			path = SwishTest;
 			sourceTree = "<group>";
@@ -128,6 +131,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A9F73CE1D9A9E0200373883 /* train.pl in Resources */,
 				9A094D921D97130900120BE3 /* LaunchScreen.storyboard in Resources */,
 				9A094D8F1D97130900120BE3 /* Assets.xcassets in Resources */,
 				9A094D8D1D97130900120BE3 /* Main.storyboard in Resources */,
