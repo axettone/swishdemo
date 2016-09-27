@@ -27,30 +27,23 @@ class ViewController: UIViewController, NSURLSessionDelegate, NSURLConnectionDel
     }
     @IBAction func btnRequest(sender: AnyObject) {
         self.data = NSMutableData()
-        let url = NSURL(string: "http://172.31.255.146:3050/pengine/create")
+        let url = NSURL(string: "http://192.168.1.10:3050/pengine/create")
         self.request = NSMutableURLRequest.init(URL: url!)
         
-        
-        let body:NSString = "format=json&template=prolog(Program)&ask=induce(Program)&src_text=:-include('train.pl').&application=swish&chunk=100000000000"
-         self.request!.HTTPBody = body.dataUsingEncoding(NSUTF8StringEncoding)
-        
-        print(self.request!.HTTPBody?.length)
+        //print(self.request!.HTTPBody?.length)
         self.request!.HTTPMethod = "POST"
         request!.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request!.setValue("curl/7.43.0", forHTTPHeaderField: "User-Agent")
-
-        
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()
         var session = NSURLSession(configuration: config, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
-        var task = session.dataTaskWithRequest(request!)
-        
         do{
-            let filePath:NSString = NSBundle.mainBundle().pathForResource("train", ofType: "pl")!
-            var fileContent:NSString = try NSString(contentsOfFile: filePath as String, encoding: NSUTF8StringEncoding)
-        
-        task.resume()
+            let fileURL:String = "https://raw.githubusercontent.com/axettone/swish/master/examples/aleph/train.pl"
+            let body:NSString = "format=json&template=prolog(Program)&ask=induce(Program)&src_url=\(fileURL)&application=swish&chunk=100000000000"
+            self.request!.HTTPBody = body.dataUsingEncoding(NSUTF8StringEncoding)
+            var task = session.dataTaskWithRequest(request!)
+            task.resume()
         } catch {
-            print("ERROR")
+            print("ERRORE")
         }
         print("RESUME()")
         
@@ -61,28 +54,17 @@ class ViewController: UIViewController, NSURLSessionDelegate, NSURLConnectionDel
     func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveData data: NSData) {
         self.data!.appendData(data)
     }
-    
-    
     func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
         if((error) != nil){
             print("Hola, errori!")
             return
         }
         print("FINITO")
-        let results:NSString = NSString(data: self.data!, encoding: NSUTF8StringEncoding)!
-        let splitter:NSString = "Access-Control-Allow-Origin: *\nCache-Control: no-cache, no-store, must-revalidate\r\nPragma: no-cache\r\nExpires: 0\r\nContent-type: application/json; charset=UTF-8"
-      
-        //TODO: Fare pulizia, il primo array data dovrebbe essere inutile
-        let tmp:NSString = results.stringByReplacingOccurrencesOfString(splitter as String, withString: ",")
-        let jsonString = NSString.init(format: "{\"data\":[%@]}", tmp)
+
+        let jsonString = NSString(data: self.data!, encoding: NSUTF8StringEncoding)!
         do{
             let jsonData:NSDictionary = try NSJSONSerialization.JSONObjectWithData(jsonString.dataUsingEncoding(NSUTF8StringEncoding)!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-            
-            let items:NSArray = jsonData["data"] as! NSArray
-            print(items.count)
-            let d:NSDictionary = items[0] as! NSDictionary
-            self.pengine_id = NSString(string: d["id"] as! String)
-            
+            self.pengine_id = NSString(string: jsonData["id"] as! String)
             self.pullResponse()
             
         } catch {
@@ -93,8 +75,7 @@ class ViewController: UIViewController, NSURLSessionDelegate, NSURLConnectionDel
     }
     func pullResponse(){
         self.pullRequestHandler = PullHandler(parentController: self)
-        let pullURL = NSString(format: "http://172.31.255.146:3050/pengine/pull_response?id=%@&format=json", self.pengine_id!)
-        //print(pullURL)
+        let pullURL = NSString(format: "http://192.168.1.10:3050/pengine/pull_response?id=%@&format=json", self.pengine_id!)
         self.pullRequest = NSMutableURLRequest.init(URL: NSURL(string: pullURL as String)!)
         self.pullRequest!.HTTPMethod = "GET"
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()
